@@ -3,22 +3,30 @@
   "module": "src/index.tsx",
   "type": "module",
   "scripts": {
+    "dev": "concurrently \"bun run --watch src/index.ts\" \"bun run tw:dev\"",
+    "tw": "bunx tailwindcss -i ./src/styles.css -o ./public/styles.css",
+    "tw:dev": "bunx tailwindcss -i ./src/styles.css -o ./public/styles.css --watch",
     "db:push": "bunx drizzle-kit push:sqlite",
-    "db:studio": "bunx drizzle-kit studio",
-    "watch": "bun run --watch src/index.tsx"
+    "db:generate": "bunx drizzle-kit generate:pg",
+    "db:studio": "bunx drizzle-kit studio"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "latest",
     "bun-types": "latest",
+    "concurrently": "^8.2.0",
     "drizzle-kit": "^0.19.12",
+    "tailwindcss": "^3.3.3",
     "typed-html": "^3.0.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@elysiajs/cors": "^0.5.2",
     "@elysiajs/html": "^0.5.2",
+    "@elysiajs/static": "^0.5.3",
     "@libsql/client": "^0.3.1",
+    "dayjs": "^1.11.9",
     "drizzle-orm": "^0.27.2",
     "elysia": "^0.5.25"
   }
